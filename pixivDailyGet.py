@@ -16,13 +16,14 @@ pep的语法规则呢。。。回头再改（不会
     连不上网不会报错？？嗯？
     
 """
-
+# FIXME:添加代理
+proxies = {'http': 'http://34.92.60.228:56777', 'https': 'http://34.92.60.228:56777'}
 
 # find the link of 50 small pictures and return a list which content them
 def findOriginImgs(url):
     html = ""
     try:
-        html = requests.get(url).text  # the original code of web
+        html = requests.get(url,proxies=proxies).text  # the original code of web
     except Exception as e:
         print(e)
 
@@ -55,11 +56,11 @@ def downloadFromList(url, id, count):
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36',
                }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers,proxies=proxies)
     # print(response.status_code)
     if response.status_code == 404:
         url = url[:69] + 'png'
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers,proxies=proxies)
 
     html = response.content
     filename = (url.split('/')[-1])[:15]
