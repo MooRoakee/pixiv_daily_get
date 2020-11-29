@@ -21,7 +21,7 @@ pep的语法规则呢。。。回头再改（不会
 def findOriginImgs(url):
     html = ""
     try:
-        html = requests.get(url,verify=False).text  # the original code of web
+        html = requests.get(url).text  # the original code of web
     except Exception as e:
         print(e)
 
